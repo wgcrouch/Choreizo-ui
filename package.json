@@ -1,16 +1,16 @@
 {
-  "author": "Josh David Miller",
-  "name": "ng-boilerplate",
-  "version": "0.3.1",
-  "homepage": "http://bit.ly/ng-boilerplate",
+  "author": "Space Stallions",
+  "name": "Choreizo UI",
+  "version": "0.0.1",
+  "homepage": "",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/joshdmiller/ng-boilerplate/master/LICENSE"
+    "url": "https://raw.github.com/wgcrouch/Choreizo-ui/master/LICENSE"
   },
-  "bugs": "https://github.com/joshdmiller/ng-boilerplate/issues",
+  "bugs": "https://github.com/wgcrouch/Choreizo-ui/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:joshdmiller/ng-boilerplate.git"
+    "url": "git@github.com:wgcrouch/Choreizo-ui.git"
   },
   "dependencies": {},
   "devDependencies": {
