@@ -20,6 +20,7 @@ angular.module( 'choreizo.register', [
 
 .controller( 'RegisterCtrl', function RegisterController( $location, $scope, CurrentUser, CurrentUserHabitat) {
 
+/*
     $scope.user = CurrentUser.get(null, function() {
         if (typeof $scope.user.habitat === 'undefined') {
             $scope.habitat = new CurrentUserHabitat();
@@ -33,6 +34,7 @@ angular.module( 'choreizo.register', [
         habitat.$save();
         $location.path("/housemates");
     }
+*/
 })
 
 ;
