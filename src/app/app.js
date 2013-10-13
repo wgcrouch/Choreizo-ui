@@ -54,8 +54,20 @@ angular.module( 'choreizo', [
 })
 
 .factory('Housemate', function($resource) {
-  return $resource('http://choreizo.localhost/api/habitats/:habitatId/users',
+  return $resource('http://choreizo.localhost/api/habitats/:habitatId/users', 
+    null,
     { update: { method: 'PUT' }}
+  
+  );
+})
+
+.factory('Chore', function($resource) {
+  return $resource('http://choreizo.localhost/api/habitats/:habitatId/chores'
+  );
+})
+
+.factory('UserChore', function($resource) {
+  return $resource('http://choreizo.localhost/api/currentuser/chores'
   );
 })
 

@@ -33,11 +33,23 @@ angular.module( 'choreizo.home', [
     url: '/chores',
     views: {
       "main": {
-        controller: 'HomeCtrl',
+        controller: 'ChoresCtrl',
         templateUrl: 'home/chores.tpl.html'
       }
     },
     data:{ pageTitle: 'Chores' }
+  });
+
+   //Chores index
+  $stateProvider.state( 'my_chores', {
+    url: '/chores/mine',
+    views: {
+      "main": {
+        controller: 'MyChoresCtrl',
+        templateUrl: 'home/my_chores.tpl.html'
+      }
+    },
+    data:{ pageTitle: 'My Chores' }
   });
   
   //People Add
@@ -57,7 +69,7 @@ angular.module( 'choreizo.home', [
     url: '/chores/add',
     views: {
       "main": {
-        controller: 'HomeCtrl',
+        controller: 'ChoreAddCtrl',
         templateUrl: 'home/chores_add.tpl.html'
       }
     },
@@ -83,15 +95,71 @@ angular.module( 'choreizo.home', [
 
 .controller( 'PeopleCtrl', function PeopleController($location, $scope, Housemate, CurrentUser) {
     var user = CurrentUser.get(function() {
-      console.log(user);
-      $scope.habitat = user.habitat;
-      $scope.people = Housemate.query({habitatId: user.habitat.id});
+        $scope.habitat = user.habitat;
+        $scope.people = Housemate.query({habitatId: user.habitat.id});
     });
 
     $scope.go = function ( path ) {
-      $location.path( path );
+        $location.path( path );
     };
 })
+
+.controller( 'ChoresCtrl', function ChoresController($location, $scope, Housemate, CurrentUser, Chore) {
+    var user = CurrentUser.get(function() {
+        $scope.habitat = user.habitat;
+        $scope.chores = Chore.query({habitatId: user.habitat.id});
+    });
+
+    $scope.go = function ( path ) {
+        $location.path( path );
+    };
+})
+
+.controller( 'MyChoresCtrl', function MyChoresController($location, $scope, Housemate, CurrentUser, UserChore) {
+    var user = CurrentUser.get(function() {
+        $scope.habitat = user.habitat;
+        $scope.chores = UserChore.query();
+    });
+
+    $scope.go = function ( path ) {
+        $location.path( path );
+    };
+})
+
+.controller( 'ChoreAddCtrl', function ChoreAddController($location, $scope, CurrentUser, Housemate, Chore) {
+    $scope.people = [];
+    var user = CurrentUser.get(function() {
+        $scope.habitat = user.habitat;
+        var people = Housemate.query({habitatId: user.habitat.id}, function() {
+            for (var i = 0; i < people.length; i++) {
+                person = people[i];
+                var name = person.invite ? 'Invited: ' + person.email : person.first_name;
+                $scope.people.push({name: name, id: person.id, position: i});
+            }
+        });
+        $scope.chore = new Chore();
+    });
+
+    $scope.linkedPeople = [];
+    $scope.selectedOption = [];
+
+    $scope.go = function ( path ) {
+        $location.path( path );
+    };
+
+    $scope.addPerson = function() {
+        $scope.linkedPeople.push($scope.selectedOption); 
+        delete($scope.people[$scope.people.indexOf($scope.selectedOption)]);
+    }
+
+    $scope.create = function(chore) {
+        chore.users = $scope.linkedPeople.map(function(obj) {return obj.id});
+        chore.$save({'habitatId' : user.habitat.id});
+        $location.path("/chores");
+    };
+    
+})
+
 
 ;
 

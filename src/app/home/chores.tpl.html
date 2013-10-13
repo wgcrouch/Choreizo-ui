@@ -1,4 +1,5 @@
-<div class="jumbotron">
-  <h1>Chores</h1>
+<div ng-repeat="chore in chores">
+	{{chore.name}} {{chore.deadline}} - &pound; {{chore.fine_amount}} ({{chore.target_user.first_name}} {{chore.target_user.last_name}} <em ng-show="chore.target_user.invite">Invited {{chore.target_user.email}}</em>)
+</div>
 
 

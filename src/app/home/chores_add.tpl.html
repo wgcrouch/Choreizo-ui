@@ -1,4 +1,19 @@
-<div class="jumbotron">
-  <h1>Add Chore</h1>
+<div class="row-fluid row-padded">
+	<div class="span12">
+	  	<form class="">
+	  		<label>Chore: </label><input class="span12" type="text" ng-model="chore.name" /><br/>
+	  		<label>Deadline: </label><input class="span12" type="text" ng-model="chore.deadline" /><br/>
+	  		<label>Fine Amount: </label><input class="span12" type="text" ng-model="chore.fine_amount"/><br/>
+	  		
+	  		<h4>Users</h4>
+	  		<select data-ng-options="p.name for p in people" data-ng-model="selectedOption"></select><button ng-click="addPerson()"><i class="icon-plus"></i></button>
+
+	  		<ul>
+	  			<li ng-repeat="selected in linkedPeople">{{selected.name}}</li>
+	  		</ul>
+	  		<input class="btn btn-block" type="submit" ng-click="create(chore)" value="Create"/>
+	  	</form>
+  	</div>
+</div>
 
 
