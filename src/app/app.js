@@ -10,7 +10,7 @@ angular.module( 'choreizo', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+  $urlRouterProvider.otherwise( '/people' );
 })
 
 .run( function run () {

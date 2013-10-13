@@ -7,12 +7,12 @@
 			
 		</div>
 	</div>
-	<div class="span8" style="">
+	<div class="span6" style="">
 	<div style="font-size:1.4em;padding:10px;">{{ person.first_name}} {{person.last_name}}<em ng-show="person.invite">Invited</em></div>
 	<div style="font-size:1.0em;padding:0px 10px;">{{ person.email }}</div>
 	</div>
+	<div class="span2" style="padding-top:10px"><br/><a ng-show="person.id == currentUser.id" href="#/chores/mine">Mine <i class="icon-th-list"></i></a> <span ng-show="person.id != currentUser.id" style="font-size:1.3em;color:{{person.color}} !important;">&pound; {{person.debt}}</span></div>
 </div>
-{{ debts }}
 <div class="row-fluid row-padded" style="background:#eaeaea">
 	<div class="span12">
 	<div class="btn btn-large btn-block" ng-click="go('/people/add')">Add People</div>

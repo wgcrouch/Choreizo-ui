@@ -94,10 +94,23 @@ angular.module( 'choreizo.home', [
 })
 
 .controller( 'PeopleCtrl', function PeopleController($location, $scope, Housemate, CurrentUser, UserDebt) {
+    $scope.people = [];
     var user = CurrentUser.get(function() {
         $scope.habitat = user.habitat;
-        $scope.people = Housemate.query({habitatId: user.habitat.id});
-        $scope.debts = UserDebt.query({userId: user.id});
+        $scope.currentUser = user;
+        $scope.debts = UserDebt.query({userId: user.id}, function() {
+            var people = Housemate.query({habitatId: user.habitat.id}, function() {
+                console.log($scope.debts);
+                for (var i = 0; i < people.length; i++) {
+                    person = people[i];
+                    person.debt = $scope.debts[0][person.id];
+                    person.color = person.debt > 0 ? 'green' : 'red';
+                    $scope.people.push(person);
+                }
+                console.log($scope.people);
+            });
+        });
+
     });
 
     $scope.go = function ( path ) {
