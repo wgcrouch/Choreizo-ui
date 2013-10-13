@@ -3,8 +3,10 @@ angular.module( 'choreizo', [
   'templates-common',
   'choreizo.home',
   'choreizo.login',
+  'choreizo.register',
   'ui.state',
-  'ui.route'
+  'ui.route',
+  'ngResource'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
@@ -12,8 +14,9 @@ angular.module( 'choreizo', [
 })
 
 .run( function run () {
+  
 })
-
+ 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
@@ -22,5 +25,25 @@ angular.module( 'choreizo', [
   });
 })
 
+.factory('User', function($resource) {
+  return $resource('http://choreizo.localhost/api/users/:userId',
+    { userId:'@id' },
+    { update: { method: 'PUT' }}
+  );
+})
+
+.factory('CurrentUser', function($resource) {
+  return $resource('http://choreizo.localhost/api/currentuser',
+    { userId:'@id' },
+    { update: { method: 'PUT' }}
+  );
+})
+
+.factory('CurrentUserHabitat', function($resource) {
+  return $resource('http://choreizo.localhost/api/currentusers/habitats',
+    { userId:'@id' },
+    { update: { method: 'PUT' }}
+  );
+})
 ;
 
