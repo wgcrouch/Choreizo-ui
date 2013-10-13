@@ -71,6 +71,10 @@ angular.module( 'choreizo', [
   );
 })
 
+.factory('UserDebt', function($resource) {
+  return $resource('http://choreizo.localhost/api/users/:userId/chore/debt');
+})
+
 .factory('AuthService', function(CurrentUser) {
   var currentUser = CurrentUser.get();
   return {

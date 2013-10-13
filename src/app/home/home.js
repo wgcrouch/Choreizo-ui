@@ -93,10 +93,11 @@ angular.module( 'choreizo.home', [
     };
 })
 
-.controller( 'PeopleCtrl', function PeopleController($location, $scope, Housemate, CurrentUser) {
+.controller( 'PeopleCtrl', function PeopleController($location, $scope, Housemate, CurrentUser, UserDebt) {
     var user = CurrentUser.get(function() {
         $scope.habitat = user.habitat;
         $scope.people = Housemate.query({habitatId: user.habitat.id});
+        $scope.debts = UserDebt.query({userId: user.id});
     });
 
     $scope.go = function ( path ) {
