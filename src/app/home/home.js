@@ -90,7 +90,7 @@ angular.module( 'choreizo.home', [
         invite.$save(null, function() {
             $location.path("/people");
         });
-    }
+    };
 })
 
 .controller( 'PeopleCtrl', function PeopleController($location, $scope, Housemate, CurrentUser) {

@@ -34,9 +34,5 @@ angular.module( 'choreizo.register', [
         habitat.$save(null, function() {
             $location.path("/people/add");
         });      
-    }
-
-})
-
-;
-
+    };
+});
