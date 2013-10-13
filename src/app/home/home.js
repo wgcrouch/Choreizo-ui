@@ -21,11 +21,11 @@ angular.module( 'choreizo.home', [
     url: '/people',
     views: {
       "main": {
-        controller: 'HomeCtrl',
+        controller: 'PeopleCtrl',
         templateUrl: 'home/people.tpl.html'
       }
     },
-    data:{ pageTitle: 'People' }
+    data:{ pageTitle: 'Housemates' }
   });
   
   //Chores index
@@ -45,11 +45,11 @@ angular.module( 'choreizo.home', [
     url: '/people/add',
     views: {
       "main": {
-        controller: 'HomeCtrl',
+        controller: 'PeopleAddCtrl',
         templateUrl: 'home/people_add.tpl.html'
       }
     },
-    data:{ pageTitle: 'Add Person' }
+    data:{ pageTitle: 'Invite Housemate' }
   });
   
   //Chores Add
@@ -68,6 +68,29 @@ angular.module( 'choreizo.home', [
 
 
 .controller( 'HomeCtrl', function HomeController( $scope ) {
+  
+})
+    
+
+.controller( 'PeopleAddCtrl', function PeopleAddController( $location, $scope, Invite) {
+    $scope.invite = new Invite();
+    $scope.send = function(invite) {
+        invite.$save(null, function() {
+            $location.path("/people");
+        });
+    }
+})
+
+.controller( 'PeopleCtrl', function PeopleController($location, $scope, Housemate, CurrentUser) {
+    var user = CurrentUser.get(function() {
+      console.log(user);
+      $scope.habitat = user.habitat;
+      $scope.people = Housemate.query({habitatId: user.habitat.id});
+    });
+
+    $scope.go = function ( path ) {
+      $location.path( path );
+    };
 })
 
 ;

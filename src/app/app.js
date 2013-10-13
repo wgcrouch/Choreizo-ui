@@ -45,5 +45,26 @@ angular.module( 'choreizo', [
     { update: { method: 'PUT' }}
   );
 })
+
+.factory('Invite', function($resource) {
+  return $resource('http://choreizo.localhost/api/invites/:userId',
+    { userId:'@id' },
+    { update: { method: 'PUT' }}
+  );
+})
+
+.factory('Housemate', function($resource) {
+  return $resource('http://choreizo.localhost/api/habitats/:habitatId/users',
+    { update: { method: 'PUT' }}
+  );
+})
+
+.factory('AuthService', function(CurrentUser) {
+  var currentUser = CurrentUser.get();
+  return {
+      currentUser: function() { return currentUser; }
+  };
+});
+
 ;
 
