@@ -2,7 +2,7 @@
 <html ng-app="choreizo" ng-controller="AppCtrl">
   <head>
     <title ng-bind="pageTitle"></title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0; user-scalable=0;">
     <!-- font awesome from BootstrapCDN -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
@@ -14,48 +14,17 @@
 
   </head>
   <body>
-    <div class="container">
-      <div class="masthead">
-        <h3 class="muted">Choreizo</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li ui-route="/home" ng-class="{active:$uiRoute}">
-                  <a href="#/home">
-                    <i class="icon-home"></i>
-                    Home
-                  </a>
-                </li>
-                <li ui-route="/login" ng-class="{active:$uiRoute}">
-                  <a href="#/login">
-                    <i class="icon-login"></i>
-                    Login
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+  	<div class="logo-bar" style="height:43px;width:100%">
+    	<div class="logo">&nbsp;</div>
+    </div>
+    <div class="container-fluid">
+    
+
+    
+    <div class="main" ui-view="main"></div>
+    
     </div>
 
-    <div class="container" ui-view="main"></div>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-inner">
-          <ul class="social">
-            
-          </ul>
-          
-
-          <p>
-            (c) 2013 Space Stallions.       
-          </p>
-        </div>
-      </div>
-    </footer>
     <script src="https://www.paypalobjects.com/js/external/api.js"></script>
   </body>
 </html>
