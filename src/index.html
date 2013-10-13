@@ -14,7 +14,7 @@
 
   </head>
   <body>
-  	<div class="logo-bar">
+  	<div class="logo-bar" id="logo-bar">
     	<div class="logo">&nbsp;</div>
     </div>
     <div class="container-fluid">
@@ -22,7 +22,13 @@
     <div class="main" ui-view="main"></div>
     
     </div>
-
+	<script type=text/javascript>
+	rnum = Math.floor((Math.random()*359)+1);
+	
+	window.onload = function() {
+	document.getElementById("logo-bar").setAttribute("style","background: hsl("+rnum+", 50%, 50%)");
+	};
+	</script>
     <script src="https://www.paypalobjects.com/js/external/api.js"></script>
   </body>
 </html>
